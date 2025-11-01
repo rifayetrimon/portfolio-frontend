@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Download, ChevronDown, MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 // --- Internal Tooltip Component ---
 interface TooltipProps {
@@ -37,17 +38,21 @@ const Navbar = () => {
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
   ];
-
+  // bg-black/90
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-md shadow-lg transition-colors duration-300">
+    <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md shadow-lg transition-colors duration-300">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         {/* LEFT: Logo/Brand Name */}
         <div className="flex-shrink-0">
-          <a
-            href="#home"
-            className="text-xl font-bold tracking-tight text-white"
-          >
-            Rifayet.dev
+          <a href="#home" className="flex items-center">
+            <Image
+              src="/logo/logo-light.svg"
+              alt="Rifayet.dev Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
           </a>
         </div>
 
