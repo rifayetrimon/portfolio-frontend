@@ -34,13 +34,14 @@ const Tooltip: React.FC<TooltipProps> = ({ children, content }) => {
 const Navbar = () => {
   const navItems = [
     { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
   ];
   // bg-black/90
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md shadow-lg transition-colors duration-300">
+    <header className="fixed top-0 bg-black/90 left-0 right-0 z-40 backdrop-blur-md shadow-lg transition-colors duration-300">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         {/* LEFT: Logo/Brand Name */}
         <div className="flex-shrink-0">
@@ -127,9 +128,10 @@ const Navbar = () => {
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden">
-            <button className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800">
+            {/* <button className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800">
               <ChevronDown size={24} />
-            </button>
+            </button> */}
+            <button className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800"></button>
           </div>
         </div>
       </nav>

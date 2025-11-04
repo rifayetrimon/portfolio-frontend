@@ -2,6 +2,7 @@
 
 import Banner from "@/components/home/Banner";
 import Navbar from "@/components/layout/navbar";
+import About from "@/components/home/About";
 
 export default function HomePage() {
   return (
@@ -10,13 +11,21 @@ export default function HomePage() {
       <Navbar />
 
       {/* Main Content Area */}
-      <main className="pt-14 sm:pt-16">
+      <main>
         {/* Hero Section with Banner */}
         <section
           id="home"
           className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
         >
           <Banner />
+        </section>
+
+        {/* about me section */}
+        <section
+          id="about"
+          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
+        >
+          <About />
         </section>
 
         {/* Content wrapper with responsive padding */}
