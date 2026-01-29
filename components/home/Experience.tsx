@@ -47,7 +47,7 @@ interface ExperienceCardProps {
 const EXPERIENCE_DATA: ExperienceEntry[] = [
     {
         id: 1,
-        company: "Your Company Name",
+        company: "Awfatech Global",
         position: "Software Developer",
         duration: "Sep 2023 - Present",
         startDate: "September 2023",

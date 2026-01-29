@@ -109,19 +109,20 @@ const CONTACT_INFO: ContactInfo[] = [
     {
         icon: <Mail size={24} className="text-indigo-400" />,
         label: "Email",
-        value: "your.email@example.com",
-        href: "mailto:your.email@example.com",
+        value: "rifayetrimom@gmail.com",
+        href: "mailto:rifayetrimom@gmail.com",
     },
     {
         icon: <Phone size={24} className="text-indigo-400" />,
         label: "Phone",
-        value: "+1 (XXX) XXX-XXXX",
+        // value: "+880 16221-09042",
+        value: "+60 16853-8566",
         href: "tel:+1XXXXXXXXXX",
     },
     {
         icon: <MapPin size={24} className="text-indigo-400" />,
         label: "Location",
-        value: "Your City, Country",
+        value: "Jati-2, USJ-1, Subang Jaya, Selangor, Malaysia",
     },
 ];
 
@@ -138,7 +139,7 @@ const SOCIAL_LINKS: SocialLink[] = [
     {
         name: "LinkedIn",
         icon: <Linkedin size={24} />,
-        href: "https://linkedin.com",
+        href: "https://www.linkedin.com/in/rifayet-uddin-ahmed-079b97181",
         color: "hover:text-blue-400 hover:bg-blue-900/30",
     },
     {
@@ -509,7 +510,7 @@ const Contact: React.FC = () => {
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <a
-                            href="https://linkedin.com"
+                            href="www.linkedin.com/in/rifayet-uddin-ahmed-079b97181"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-6 py-2 rounded-full border border-blue-500/50 text-blue-400 hover:bg-blue-500/10 transition-all duration-300 font-semibold"
