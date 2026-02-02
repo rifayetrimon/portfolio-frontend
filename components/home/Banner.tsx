@@ -3,8 +3,13 @@ import { Download, ArrowRight } from "lucide-react";
 
 export default function Banner() {
   return (
-    <section className="min-h-screen flex items-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="w-full flex items-center pt-24 pb-12 sm:pt-28 sm:pb-20 lg:py-20">
+      {/* 
+          Standardized container 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' 
+          to match the Navbar exactly. 
+          pt-24 on mobile ensures the content starts below the fixed Navbar.
+      */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Mobile: Stack items (flex-col-reverse), Desktop: Grid */}
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
@@ -70,7 +75,6 @@ export default function Banner() {
               ></div>
 
               {/* Oval Border Container */}
-              {/* Responsive sizes: Mobile(w-56 h-72), Tablet(w-80 h-[28rem]), Desktop(w-96 h-[32rem]) */}
               <div
                 className="relative w-56 h-72 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] rounded-full overflow-hidden"
                 style={{
