@@ -119,26 +119,31 @@ export default function Projects() {
         : projectsData.filter(project => project.category === activeCategory);
 
     return (
-        <section className="min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto w-full">
+        <section className="w-full flex items-center py-12 sm:py-20">
+            {/* 
+                Container is set to 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' 
+                to match the Navbar exactly. This ensures left and right 
+                alignment is consistent across all sections.
+            */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 {/* Section Header */}
-                <div className="mb-16">
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+                <div className="mb-10 sm:mb-16 text-center sm:text-left">
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
                         My <span className="text-indigo-500">Projects</span>
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6"></div>
-                    <p className="text-lg text-gray-400 max-w-2xl">
+                    <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6 mx-auto sm:mx-0"></div>
+                    <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto sm:mx-0">
                         A collection of full-stack applications and machine learning models showcasing my expertise in building scalable solutions and intelligent systems.
                     </p>
                 </div>
 
                 {/* Category Filter */}
-                <div className="flex flex-wrap gap-3 mb-12">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-12 justify-center sm:justify-start">
                     {categories.map((category) => (
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${activeCategory === category
+                            className={`px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${activeCategory === category
                                 ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/50"
                                 : "border border-gray-700 text-gray-300 hover:border-indigo-500 hover:text-indigo-300"
                                 }`}
@@ -149,45 +154,42 @@ export default function Projects() {
                 </div>
 
                 {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {filteredProjects.map((project) => (
                         <div
                             key={project.id}
-                            className="group relative h-full rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 overflow-hidden"
-                            style={{
-                                boxShadow: "0 0 20px rgba(99, 102, 241, 0), inset 0 0 20px rgba(99, 102, 241, 0)",
-                            }}
+                            className="group relative h-full flex flex-col rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 overflow-hidden"
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.boxShadow = "0 0 30px rgba(99, 102, 241, 0.2), inset 0 0 30px rgba(99, 102, 241, 0.05)";
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.boxShadow = "0 0 20px rgba(99, 102, 241, 0), inset 0 0 20px rgba(99, 102, 241, 0)";
+                                e.currentTarget.style.boxShadow = "none";
                             }}
                         >
                             {/* Project Header with Icon */}
-                            <div className="p-6 pb-4">
+                            <div className="p-5 sm:p-6 pb-4">
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="text-5xl">{project.image}</div>
-                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold border flex items-center gap-1 ${getCategoryColor(project.category)}`}>
+                                    <div className="text-4xl sm:text-5xl">{project.image}</div>
+                                    <span className={`px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold border flex items-center gap-1 ${getCategoryColor(project.category)}`}>
                                         {getCategoryIcon(project.category)}
                                         {project.category}
                                     </span>
                                 </div>
 
                                 {/* Project Title */}
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+                                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
                                     {project.title}
                                 </h3>
 
                                 {/* Project Description */}
-                                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
                                     {project.description}
                                 </p>
 
                                 {/* Highlights */}
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.highlights.map((highlight, idx) => (
-                                        <span key={idx} className="text-xs px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                                        <span key={idx} className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
                                             {highlight}
                                         </span>
                                     ))}
@@ -195,10 +197,10 @@ export default function Projects() {
                             </div>
 
                             {/* Technologies */}
-                            <div className="px-6 pb-4 border-t border-gray-700/50">
-                                <div className="flex flex-wrap gap-2">
+                            <div className="px-5 sm:px-6 pb-4 mt-auto">
+                                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-gray-700/50">
                                     {project.technologies.map((tech, idx) => (
-                                        <span key={idx} className="text-xs px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 border border-gray-700">
+                                        <span key={idx} className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-gray-800 text-gray-300 border border-gray-700">
                                             {tech}
                                         </span>
                                     ))}
@@ -206,15 +208,15 @@ export default function Projects() {
                             </div>
 
                             {/* Links */}
-                            <div className="px-6 py-4 border-t border-gray-700/50 flex gap-3">
+                            <div className="px-5 sm:px-6 py-4 border-t border-gray-700/50 flex gap-2 sm:gap-3">
                                 {project.links.github && (
                                     <a
                                         href={project.links.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-indigo-600 hover:text-white transition-all duration-300 font-semibold text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-indigo-600 hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
                                     >
-                                        <Github size={16} />
+                                        <Github size={14} className="sm:w-4 sm:h-4" />
                                         GitHub
                                     </a>
                                 )}
@@ -223,9 +225,9 @@ export default function Projects() {
                                         href={project.links.live}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold text-xs sm:text-sm"
                                     >
-                                        <ExternalLink size={16} />
+                                        <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                                         Live
                                     </a>
                                 )}
@@ -234,9 +236,9 @@ export default function Projects() {
                                         href={project.links.kaggle}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-purple-600 hover:text-white transition-all duration-300 font-semibold text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-purple-600 hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
                                     >
-                                        <Database size={16} />
+                                        <Database size={14} className="sm:w-4 sm:h-4" />
                                         Kaggle
                                     </a>
                                 )}
@@ -245,36 +247,15 @@ export default function Projects() {
                                         href={project.links.gradio}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300 font-semibold text-sm"
+                                        className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold text-xs sm:text-sm"
                                     >
-                                        <Sparkles size={16} />
+                                        <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                                         Demo
                                     </a>
                                 )}
                             </div>
                         </div>
                     ))}
-                </div>
-
-                {/* Empty State */}
-                {filteredProjects.length === 0 && (
-                    <div className="text-center py-16">
-                        <p className="text-gray-400 text-lg">No projects found in this category.</p>
-                    </div>
-                )}
-
-                {/* Call to Action */}
-                <div className="mt-16 text-center">
-                    <p className="text-gray-400 mb-6">Interested in seeing more of my work?</p>
-                    <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-indigo-500/50"
-                    >
-                        <Github size={20} />
-                        Visit My GitHub
-                    </a>
                 </div>
             </div>
         </section>

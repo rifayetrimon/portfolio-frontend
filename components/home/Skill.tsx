@@ -12,17 +12,11 @@ import {
 
 // ==================== TYPE DEFINITIONS ====================
 
-/**
- * Represents a single skill with its name and proficiency level
- */
 interface Skill {
     name: string;
     level: number; // 0-100
 }
 
-/**
- * Represents a color scheme for skill categories
- */
 interface ColorScheme {
     bg: string;
     border: string;
@@ -30,16 +24,6 @@ interface ColorScheme {
     accent: string;
 }
 
-/**
- * Represents a color palette mapping
- */
-interface ColorPalette {
-    [key: string]: ColorScheme;
-}
-
-/**
- * Represents a skill category with its icon and skills
- */
 interface SkillCategory {
     category: string;
     icon: LucideIcon;
@@ -47,14 +31,8 @@ interface SkillCategory {
     skills: Skill[];
 }
 
-/**
- * Type for valid color keys
- */
 type ColorKey = "indigo" | "purple" | "pink" | "cyan";
 
-/**
- * Represents a summary statistic
- */
 interface SkillStat {
     label: string;
     value: string;
@@ -62,26 +40,17 @@ interface SkillStat {
     color: ColorKey;
 }
 
-/**
- * Represents a proficiency level in the legend
- */
 interface ProficiencyLevel {
     range: string;
     label: string;
     color: string;
 }
 
-/**
- * Props for SkillBar component
- */
 interface SkillBarProps {
     name: string;
     level: number;
 }
 
-/**
- * Props for SkillCategory component
- */
 interface SkillCategoryProps {
     category: string;
     icon: LucideIcon;
@@ -91,9 +60,6 @@ interface SkillCategoryProps {
 
 // ==================== DATA ====================
 
-/**
- * Color schemes for different skill categories
- */
 const COLOR_SCHEMES: Record<ColorKey, ColorScheme> = {
     indigo: {
         bg: "bg-indigo-500/10",
@@ -121,9 +87,6 @@ const COLOR_SCHEMES: Record<ColorKey, ColorScheme> = {
     },
 };
 
-/**
- * Gradient color mappings for stats
- */
 const COLOR_MAP: Record<ColorKey, string> = {
     indigo: "from-indigo-500 to-indigo-600",
     purple: "from-purple-500 to-purple-600",
@@ -131,9 +94,6 @@ const COLOR_MAP: Record<ColorKey, string> = {
     cyan: "from-cyan-500 to-cyan-600",
 };
 
-/**
- * Skills data organized by category
- */
 const SKILLS_DATA: SkillCategory[] = [
     {
         category: "Frontend Development",
@@ -189,9 +149,6 @@ const SKILLS_DATA: SkillCategory[] = [
     },
 ];
 
-/**
- * Skills summary statistics
- */
 const SKILLS_STATS: SkillStat[] = [
     {
         label: "Languages",
@@ -219,9 +176,6 @@ const SKILLS_STATS: SkillStat[] = [
     },
 ];
 
-/**
- * Proficiency levels for the legend
- */
 const PROFICIENCY_LEVELS: ProficiencyLevel[] = [
     { range: "90-100%", label: "Expert", color: "from-green-500 to-emerald-500" },
     { range: "80-89%", label: "Advanced", color: "from-blue-500 to-cyan-500" },
@@ -231,18 +185,14 @@ const PROFICIENCY_LEVELS: ProficiencyLevel[] = [
 
 // ==================== COMPONENTS ====================
 
-/**
- * SkillBar Component
- * Displays a single skill with a progress bar
- */
 const SkillBar: React.FC<SkillBarProps> = ({ name, level }) => {
     return (
-        <div className="space-y-2">
+        <div className="space-y-1.5 sm:space-y-2">
             <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-300">{name}</span>
-                <span className="text-xs text-gray-500">{level}%</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-300">{name}</span>
+                <span className="text-[10px] sm:text-xs text-gray-500">{level}%</span>
             </div>
-            <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 sm:h-2 bg-gray-800 rounded-full overflow-hidden">
                 <div
                     className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
                     style={{ width: `${level}%` }}
@@ -252,10 +202,6 @@ const SkillBar: React.FC<SkillBarProps> = ({ name, level }) => {
     );
 };
 
-/**
- * SkillCategory Component
- * Displays a category of skills with its icon and color scheme
- */
 const SkillCategory: React.FC<SkillCategoryProps> = ({
     category,
     icon: Icon,
@@ -266,29 +212,24 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
 
     return (
         <div
-            className={`p-6 rounded-2xl border ${colors.bg} ${colors.border} backdrop-blur-sm hover:border-opacity-100 transition-all duration-300 group`}
-            style={{
-                boxShadow: `0 0 20px rgba(99, 102, 241, 0), inset 0 0 20px rgba(99, 102, 241, 0)`,
-            }}
+            className={`p-5 sm:p-6 rounded-2xl border ${colors.bg} ${colors.border} backdrop-blur-sm hover:border-opacity-100 transition-all duration-300 group`}
             onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = `0 0 30px rgba(99, 102, 241, 0.15), inset 0 0 30px rgba(99, 102, 241, 0.05)`;
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 20px rgba(99, 102, 241, 0), inset 0 0 20px rgba(99, 102, 241, 0)`;
+                e.currentTarget.style.boxShadow = `none`;
             }}
         >
-            {/* Category Header */}
-            <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded-lg bg-gradient-to-br ${colors.accent} bg-opacity-20`}>
-                    <Icon size={24} className={colors.icon} />
+            <div className="flex items-center gap-3 mb-5 sm:mb-6">
+                <div className={`p-2 sm:p-3 rounded-lg bg-gradient-to-br ${colors.accent} bg-opacity-20`}>
+                    <Icon size={20} className={`${colors.icon} sm:w-6 sm:h-6`} />
                 </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
                     {category}
                 </h3>
             </div>
 
-            {/* Skills List */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
                 {skills.map((skill, idx) => (
                     <SkillBar key={idx} name={skill.name} level={skill.level} />
                 ))}
@@ -297,38 +238,30 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
     );
 };
 
-/**
- * SkillStatCard Component
- * Displays a summary statistic card
- */
 const SkillStatCard: React.FC<{ stat: SkillStat }> = ({ stat }) => {
     const Icon = stat.icon;
     const gradientColor = COLOR_MAP[stat.color];
 
     return (
-        <div className="p-6 rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 text-center group">
+        <div className="p-4 sm:p-6 rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 text-center group">
             <div
-                className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${gradientColor} mb-4 group-hover:scale-110 transition-transform`}
+                className={`inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br ${gradientColor} mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}
             >
-                <Icon size={24} className="text-white" />
+                <Icon size={20} className="text-white sm:w-6 sm:h-6" />
             </div>
-            <p className="text-3xl font-bold text-white mb-2">{stat.value}</p>
-            <p className="text-gray-400 text-sm">{stat.label}</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.value}</p>
+            <p className="text-gray-400 text-xs sm:text-sm">{stat.label}</p>
         </div>
     );
 };
 
-/**
- * ProficiencyLevelItem Component
- * Displays a single proficiency level in the legend
- */
 const ProficiencyLevelItem: React.FC<{ level: ProficiencyLevel }> = ({ level }) => {
     return (
         <div className="flex items-center gap-3">
-            <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${level.color}`}></div>
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-r ${level.color} flex-shrink-0`}></div>
             <div>
-                <p className="text-sm font-semibold text-white">{level.label}</p>
-                <p className="text-xs text-gray-400">{level.range}</p>
+                <p className="text-xs sm:text-sm font-semibold text-white">{level.label}</p>
+                <p className="text-[10px] sm:text-xs text-gray-400">{level.range}</p>
             </div>
         </div>
     );
@@ -336,27 +269,28 @@ const ProficiencyLevelItem: React.FC<{ level: ProficiencyLevel }> = ({ level }) 
 
 // ==================== MAIN COMPONENT ====================
 
-/**
- * Skills Section Component
- * Main component that displays all skills, statistics, and proficiency legend
- */
 const Skills: React.FC = () => {
     return (
-        <section className="min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto w-full">
+        <section className="w-full flex items-center py-12 sm:py-20">
+            {/* 
+                Container is set to 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' 
+                to match the Navbar exactly. This ensures left and right 
+                alignment is consistent across all sections.
+            */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 {/* Section Header */}
-                <div className="mb-16">
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+                <div className="mb-10 sm:mb-16 text-center sm:text-left">
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
                         My <span className="text-indigo-500">Skills</span>
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6"></div>
-                    <p className="text-lg text-gray-400 max-w-2xl">
+                    <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6 mx-auto sm:mx-0"></div>
+                    <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto sm:mx-0">
                         A comprehensive overview of my technical expertise across frontend, backend, machine learning, and development tools. Each skill is rated based on my proficiency and hands-on experience.
                     </p>
                 </div>
 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
                     {SKILLS_DATA.map((skillCategory, idx) => (
                         <SkillCategory
                             key={idx}
@@ -369,16 +303,16 @@ const Skills: React.FC = () => {
                 </div>
 
                 {/* Skills Summary Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
                     {SKILLS_STATS.map((stat, idx) => (
                         <SkillStatCard key={idx} stat={stat} />
                     ))}
                 </div>
 
                 {/* Proficiency Legend */}
-                <div className="p-8 rounded-2xl border border-gray-700/50 bg-gray-900/30">
-                    <h3 className="text-xl font-bold text-white mb-6">Proficiency Scale</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="p-6 sm:p-8 rounded-2xl border border-gray-700/50 bg-gray-900/30">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-6 text-center sm:text-left">Proficiency Scale</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {PROFICIENCY_LEVELS.map((level, idx) => (
                             <ProficiencyLevelItem key={idx} level={level} />
                         ))}
@@ -386,15 +320,15 @@ const Skills: React.FC = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="mt-16 text-center">
-                    <p className="text-gray-400 mb-6">Want to see these skills in action?</p>
+                <div className="mt-12 sm:mt-16 text-center">
+                    <p className="text-sm sm:text-base text-gray-400 mb-6">Want to see these skills in action?</p>
                     <a
                         href="#projects"
-                        className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-indigo-500/50"
+                        className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-indigo-500/50 text-sm sm:text-base"
                     >
                         Explore My Projects
                         <svg
-                            className="w-5 h-5"
+                            className="w-4 h-4 sm:w-5 sm:h-5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"

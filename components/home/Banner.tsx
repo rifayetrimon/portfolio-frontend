@@ -3,33 +3,35 @@ import { Download, ArrowRight } from "lucide-react";
 
 export default function Banner() {
   return (
-    <section className="min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex items-center py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Mobile: Stack items (flex-col-reverse), Desktop: Grid */}
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
           {/* LEFT COLUMN - Text Content */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center lg:text-left">
             {/* Greeting */}
             <div className="space-y-2">
-              <p className="text-lg text-indigo-600 font-medium">
+              <p className="text-base sm:text-lg text-indigo-600 font-medium">
                 Hi there! 👋
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 This is <span className="text-indigo-500">Rifayet</span>
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300">
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-300">
                 Software Developer
               </h2>
             </div>
 
             {/* Description */}
-            <p className="text-lg text-gray-400 max-w-xl">
+            <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto lg:mx-0">
               Passionate about creating elegant solutions and building amazing
               web experiences. Specializing in modern web technologies and
               user-centric design.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
               <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/50">
                 View Projects
                 <ArrowRight
@@ -55,7 +57,7 @@ export default function Banner() {
           </div>
 
           {/* RIGHT COLUMN - Image with Oval Background */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end w-full mb-8 lg:mb-0">
             <div className="relative">
               {/* Glowing Oval Background */}
               <div
@@ -68,8 +70,9 @@ export default function Banner() {
               ></div>
 
               {/* Oval Border Container */}
+              {/* Responsive sizes: Mobile(w-56 h-72), Tablet(w-80 h-[28rem]), Desktop(w-96 h-[32rem]) */}
               <div
-                className="relative w-72 h-96 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] rounded-full overflow-hidden"
+                className="relative w-56 h-72 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] rounded-full overflow-hidden"
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%)",
@@ -89,9 +92,9 @@ export default function Banner() {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-indigo-500/20 blur-2xl animate-pulse"></div>
+              <div className="absolute -top-4 -right-4 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-indigo-500/20 blur-2xl animate-pulse"></div>
               <div
-                className="absolute -bottom-4 -left-4 w-32 h-32 rounded-full bg-purple-500/20 blur-2xl animate-pulse"
+                className="absolute -bottom-4 -left-4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-purple-500/20 blur-2xl animate-pulse"
                 style={{ animationDelay: "1s" }}
               ></div>
             </div>
