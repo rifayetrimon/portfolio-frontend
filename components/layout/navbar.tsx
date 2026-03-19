@@ -42,6 +42,21 @@ const Navbar = () => {
     { name: "Experience", href: "#experience" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navbarHeight = 64; // 4rem = 64px
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: "smooth",
+      });
+    }
+    setIsOpen(false);
+  };
+
   return (
     <header className="fixed top-0 bg-black/90 left-0 right-0 z-50 backdrop-blur-md shadow-lg transition-colors duration-300">
       {/* 
@@ -51,7 +66,7 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         {/* LEFT: Logo/Brand Name */}
         <div className="flex-shrink-0">
-          <a href="#home" className="flex items-center">
+          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center">
             <Image
               src="/logo/logo-light.svg"
               alt="Rifayet.dev Logo"
@@ -69,6 +84,7 @@ const Navbar = () => {
             <a
               key={item.name}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="text-sm font-medium text-white hover:text-white transition-all duration-300 py-2 px-4 rounded-lg relative group"
             >
               <span className="relative z-10">{item.name}</span>
@@ -94,6 +110,7 @@ const Navbar = () => {
           {/* Contact Button (Desktop) */}
           <a
             href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-full text-white border border-gray-700 hover:border-indigo-500 hover:bg-indigo-500/10 transition-all duration-200"
             onMouseEnter={(e) => {
               e.currentTarget.style.boxShadow =
@@ -149,7 +166,7 @@ const Navbar = () => {
             <a
               key={item.name}
               href={item.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-indigo-500/10 rounded-lg transition-all"
             >
               {item.name}
@@ -158,7 +175,7 @@ const Navbar = () => {
           <div className="pt-4 border-t border-gray-800">
             <a
               href="#contact"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleNavClick(e, "#contact")}
               className="flex items-center justify-center gap-2 w-full px-4 py-3 text-base font-semibold rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition-all"
             >
               <MessageSquare size={18} />
