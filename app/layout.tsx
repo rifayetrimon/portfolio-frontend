@@ -7,7 +7,7 @@ import "./globals.css";
 // automatically uses '-apple-system' on Apple devices, and provides reliable fallbacks.
 
 export const metadata: Metadata = {
-  title: "My Professional Portfolio", // Updated title for relevance
+  title: "Rifayet", // Updated title for relevance
   description:
     "A modern developer portfolio showcasing key projects and skills.",
 };

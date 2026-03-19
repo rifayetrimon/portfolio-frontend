@@ -31,8 +31,24 @@ const WhatsAppWidget: React.FC = () => {
 
   const handleSend = () => {
     const text = message.trim() || "Hi Rifayet, I found your portfolio and would like to connect!";
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    const encodedText = encodeURIComponent(text);
+    // Try native app protocol first (works with WhatsApp, Beeper, etc.)
+    // Falls back to wa.me if the native protocol isn't handled
+    const nativeUrl = `whatsapp://send?phone=${WHATSAPP_NUMBER}&text=${encodedText}`;
+    const fallbackUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
+
+    const timeout = setTimeout(() => {
+      window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+    }, 500);
+
+    window.location.href = nativeUrl;
+
+    window.addEventListener(
+      "blur",
+      () => clearTimeout(timeout),
+      { once: true },
+    );
+
     setMessage("");
     setIsOpen(false);
   };

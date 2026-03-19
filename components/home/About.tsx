@@ -24,16 +24,31 @@ export default function AboutSection() {
             {/* Introduction */}
             <div className="space-y-4">
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                I'm a passionate software developer with a strong foundation in full-stack web development and machine learning. My journey into programming began in <span className="text-indigo-400 font-semibold">2020</span>, driven by curiosity and a desire to solve real-world problems through elegant code.
+                I&apos;m a passionate software developer with a strong
+                foundation in full-stack web development and machine learning.
+                My journey into programming began in{" "}
+                <span className="text-indigo-400 font-semibold">2020</span>,
+                driven by curiosity and a desire to solve real-world problems
+                through elegant code.
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                Since <span className="text-indigo-400 font-semibold">September 2023</span>, I've been working as a professional developer at my current organization, where I continue to grow my expertise and contribute to meaningful projects. I specialize in building scalable web applications and implementing machine learning solutions that create tangible value.
+                Since{" "}
+                <span className="text-indigo-400 font-semibold">
+                  September 2023
+                </span>
+                , I&apos;ve been working as a professional developer at my
+                current organization, where I continue to grow my expertise and
+                contribute to meaningful projects. I specialize in building
+                scalable web applications and implementing machine learning
+                solutions that create tangible value.
               </p>
             </div>
 
             {/* Professional Highlights */}
             <div className="space-y-6 sm:space-y-4 pt-4">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">What I Do</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                What I Do
+              </h3>
               <div className="space-y-5 sm:space-y-3">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-shrink-0">
@@ -42,8 +57,14 @@ export default function AboutSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Full-Stack Development</h4>
-                    <p className="text-gray-400 text-sm sm:text-base">Building modern web applications with Next.js, TypeScript, and PostgreSQL. I focus on creating responsive, performant interfaces paired with robust backend systems.</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      Full-Stack Development
+                    </h4>
+                    <p className="text-gray-400 text-sm sm:text-base">
+                      Building modern web applications with Next.js, TypeScript,
+                      and PostgreSQL. I focus on creating responsive, performant
+                      interfaces paired with robust backend systems.
+                    </p>
                   </div>
                 </div>
 
@@ -54,8 +75,15 @@ export default function AboutSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">Machine Learning & AI</h4>
-                    <p className="text-gray-400 text-sm sm:text-base">Developing and deploying ML models with expertise in feature engineering, model creation, and optimization. I've deployed several models on Kaggle using Gradio for interactive demonstrations.</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      Machine Learning & AI
+                    </h4>
+                    <p className="text-gray-400 text-sm sm:text-base">
+                      Developing and deploying ML models with expertise in
+                      feature engineering, model creation, and optimization.
+                      I&apos;ve deployed several models on Kaggle using Gradio
+                      for interactive demonstrations.
+                    </p>
                   </div>
                 </div>
 
@@ -66,8 +94,15 @@ export default function AboutSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">End-to-End Solutions</h4>
-                    <p className="text-gray-400 text-sm sm:text-base">From concept to deployment, I deliver complete solutions combining frontend excellence, backend reliability, and intelligent ML features to solve complex business challenges.</p>
+                    <h4 className="text-white font-semibold mb-1">
+                      End-to-End Solutions
+                    </h4>
+                    <p className="text-gray-400 text-sm sm:text-base">
+                      From concept to deployment, I deliver complete solutions
+                      combining frontend excellence, backend reliability, and
+                      intelligent ML features to solve complex business
+                      challenges.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -80,13 +115,18 @@ export default function AboutSection() {
             <div
               className="p-6 rounded-2xl border border-indigo-500/10 bg-indigo-500/[0.02] backdrop-blur-sm h-full lg:h-auto"
               style={{
-                boxShadow: "0 0 20px rgba(99, 102, 241, 0.05), inset 0 0 20px rgba(99, 102, 241, 0.02)",
+                boxShadow:
+                  "0 0 20px rgba(99, 102, 241, 0.05), inset 0 0 20px rgba(99, 102, 241, 0.02)",
               }}
             >
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">Tech Stack</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
+                Tech Stack
+              </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">Frontend</p>
+                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">
+                    Frontend
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs sm:text-sm font-medium border border-indigo-500/30">
                       Next.js
@@ -101,7 +141,9 @@ export default function AboutSection() {
                 </div>
 
                 <div>
-                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">Backend</p>
+                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">
+                    Backend
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs sm:text-sm font-medium border border-purple-500/30">
                       Python
@@ -116,13 +158,18 @@ export default function AboutSection() {
                 </div>
 
                 <div>
-                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">ML & Data</p>
+                  <p className="text-xs text-gray-400 font-medium mb-2 uppercase tracking-wider">
+                    ML & Data
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs sm:text-sm font-medium border border-pink-500/30">
                       Machine Learning
                     </span>
                     <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs sm:text-sm font-medium border border-pink-500/30">
                       Gradio
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs sm:text-sm font-medium border border-pink-500/30">
+                      Deep Learning
                     </span>
                   </div>
                 </div>
@@ -133,22 +180,31 @@ export default function AboutSection() {
             <div
               className="p-6 rounded-2xl border border-purple-500/10 bg-purple-500/[0.02] backdrop-blur-sm h-full lg:h-auto"
               style={{
-                boxShadow: "0 0 20px rgba(139, 92, 246, 0.05), inset 0 0 20px rgba(139, 92, 246, 0.02)",
+                boxShadow:
+                  "0 0 20px rgba(139, 92, 246, 0.05), inset 0 0 20px rgba(139, 92, 246, 0.02)",
               }}
             >
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">Journey</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
+                Journey
+              </h3>
               <div className="grid grid-cols-1 gap-4">
                 <div className="border-l-2 border-indigo-500 pl-4">
                   <p className="text-xs text-gray-400">Programming Started</p>
-                  <p className="text-xl sm:text-2xl font-bold text-indigo-400">2020</p>
+                  <p className="text-xl sm:text-2xl font-bold text-indigo-400">
+                    2020
+                  </p>
                 </div>
                 <div className="border-l-2 border-purple-500 pl-4">
                   <p className="text-xs text-gray-400">Professional Role</p>
-                  <p className="text-xl sm:text-2xl font-bold text-purple-400">Sep 2023</p>
+                  <p className="text-xl sm:text-2xl font-bold text-purple-400">
+                    Sep 2023
+                  </p>
                 </div>
                 <div className="border-l-2 border-pink-500 pl-4">
                   <p className="text-xs text-gray-400">Experience</p>
-                  <p className="text-xl sm:text-2xl font-bold text-pink-400">2.5 Years +</p>
+                  <p className="text-xl sm:text-2xl font-bold text-pink-400">
+                    2.5 Years +
+                  </p>
                 </div>
               </div>
             </div>
