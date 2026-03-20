@@ -95,8 +95,8 @@ const CONTACT_INFO: ContactInfo[] = [
   {
     icon: <Mail size={20} className="text-indigo-400 sm:w-6 sm:h-6" />,
     label: "Email",
-    value: "rifayetrimom@gmail.com",
-    href: "mailto:rifayetrimom@gmail.com",
+    value: "rifayetrimon@gmail.com",
+    href: "mailto:rifayetrimon@gmail.com",
   },
   {
     icon: <Phone size={20} className="text-indigo-400 sm:w-6 sm:h-6" />,
