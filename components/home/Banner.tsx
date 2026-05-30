@@ -1,7 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { Download, ArrowRight } from "lucide-react";
 
 export default function Banner() {
+  const handleScrollToProjects = () => {
+    const element = document.getElementById("projects");
+    if (element) {
+      const navbarHeight = 64; // 4rem = 64px
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section className="w-full flex items-center pt-24 pb-12 sm:pt-28 sm:pb-20 lg:py-20">
       {/* 
@@ -37,7 +51,10 @@ export default function Banner() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-              <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/50">
+              <button
+                onClick={handleScrollToProjects}
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/50"
+              >
                 View Projects
                 <ArrowRight
                   size={20}
