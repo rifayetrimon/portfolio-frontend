@@ -43,14 +43,28 @@ const AICallWidget: React.FC = () => {
       return;
     }
 
+    // Microphone access requires a secure context (HTTPS or localhost).
+    // On a plain-http LAN IP, navigator.mediaDevices is undefined.
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setStatus(
+        "Mic needs HTTPS. Open the site via https:// or http://localhost.",
+      );
+      return;
+    }
+
     try {
       setState("connecting");
       setStatus("Connecting…");
 
       // 1. Ask the backend for a fresh LiveKit room + token.
+      // `ngrok-skip-browser-warning` bypasses ngrok's free-tier interstitial
+      // HTML page (harmless once the backend is on a real host).
       const resp = await fetch(`${API_BASE}/v1/call/start`, {
         method: "POST",
-        headers: { "X-API-Key": API_KEY },
+        headers: {
+          "X-API-Key": API_KEY,
+          "ngrok-skip-browser-warning": "true",
+        },
       });
       if (!resp.ok) {
         const err = await resp.text();
