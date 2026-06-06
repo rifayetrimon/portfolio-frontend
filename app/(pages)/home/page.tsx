@@ -8,6 +8,7 @@ import Skills from "@/components/home/Skill";
 import Experience from "@/components/home/Experience";
 import Contact from "@/components/home/Contact";
 import WhatsAppWidget from "@/components/home/WhatsAppWidget";
+import AICallWidget from "@/components/home/AICallWidget";
 
 export default function HomePage() {
   return (
@@ -60,6 +61,7 @@ export default function HomePage() {
       </main>
 
       <WhatsAppWidget />
+      <AICallWidget />
     </>
   );
 }
