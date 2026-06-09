@@ -8,7 +8,7 @@ import { Room, RoomEvent, type RemoteTrack } from "livekit-client";
 //   NEXT_PUBLIC_AI_CALL_API_BASE=https://your-api.example.com
 //   NEXT_PUBLIC_AI_CALL_API_KEY=cak_…
 // Security note: the tenant API key is exposed to the browser here. For a
-// hardened setup, proxy `/v1/call/start` through a Next.js route handler and
+// hardened setup, proxy `/voice_assistent/call/start` through a Next.js route handler and
 // keep the key server-side. For a personal portfolio that talks to your own
 // backend, a public env var is acceptable.
 const API_BASE = (process.env.NEXT_PUBLIC_AI_CALL_API_BASE ?? "").replace(/\/+$/, "");
@@ -59,7 +59,7 @@ const AICallWidget: React.FC = () => {
       // 1. Ask the backend for a fresh LiveKit room + token.
       // `ngrok-skip-browser-warning` bypasses ngrok's free-tier interstitial
       // HTML page (harmless once the backend is on a real host).
-      const resp = await fetch(`${API_BASE}/v1/call/start`, {
+      const resp = await fetch(`${API_BASE}/voice_assistent/call/start`, {
         method: "POST",
         headers: {
           "X-API-Key": API_KEY,
@@ -68,7 +68,7 @@ const AICallWidget: React.FC = () => {
       });
       if (!resp.ok) {
         const err = await resp.text();
-        throw new Error(`/v1/call/start ${resp.status}: ${err}`);
+        throw new Error(`/voice_assistent/call/start ${resp.status}: ${err}`);
       }
       const data: { url: string; token: string } = await resp.json();
 
