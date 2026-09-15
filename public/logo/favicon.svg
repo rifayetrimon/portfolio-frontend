@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13.80 1.20 82.60 82.60">
+  <!-- Derived from logo-plain.svg. The mark is monochrome, so it follows the
+       browser/OS theme instead of being a fixed white that vanishes on a light tab. -->
+  <style>
+    path { fill: #0f172a; }
+    @media (prefers-color-scheme: dark) { path { fill: #ffffff; } }
+  </style>
+  <path d="M0.104421 60.9594L0 23.7019L28.4264 40.2273L28.5327 77.4833L0.104421 60.9594ZM25.055 7.5L53.4968 24.0326L29.9115 37.6537L1.47091 21.1212L25.055 7.5ZM54.982 26.6066L55 33.3613L42.4725 40.5966C42.246 40.7274 42.0581 40.9156 41.9276 41.1424C41.7971 41.3691 41.7288 41.6262 41.7294 41.8878L41.8119 71.5455L31.5033 77.5L31.3973 40.2273L54.982 26.6066Z"/>
+</svg>

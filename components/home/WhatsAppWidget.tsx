@@ -64,7 +64,7 @@ const WhatsAppWidget: React.FC = () => {
     <>
       {/* Chat Popup */}
       {isOpen && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[340px] sm:w-[380px] rounded-2xl overflow-hidden shadow-2xl shadow-green-500/20 border border-gray-700/50 animate-in">
+        <div className="fixed inset-x-4 bottom-[6.5rem] z-50 overflow-hidden rounded-2xl border border-border shadow-2xl shadow-green-500/20 sm:inset-x-auto sm:right-6 sm:w-[380px]">
           {/* Header */}
           <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -87,24 +87,24 @@ const WhatsAppWidget: React.FC = () => {
           <div
             className="p-4 min-h-[160px]"
             style={{
-              backgroundColor: "#0b1420",
+              backgroundColor: "var(--background-alt)",
               backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23808080' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
             }}
           >
             {/* Welcome Message Bubble */}
-            <div className="bg-gray-800 rounded-xl rounded-tl-none px-4 py-3 max-w-[85%] shadow-md">
-              <p className="text-white text-sm leading-relaxed">
+            <div className="bg-surface rounded-xl rounded-tl-none px-4 py-3 max-w-[85%] shadow-md">
+              <p className="text-foreground text-sm leading-relaxed">
                 Hey there! I&apos;m Rifayet. How can I help you? Send me a message and I&apos;ll reply as soon as possible.
               </p>
-              <p className="text-gray-500 text-[10px] mt-1.5 text-right">
+              <p className="text-subtle text-[10px] mt-1.5 text-right">
                 {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
               </p>
             </div>
           </div>
 
           {/* Message Input */}
-          <div className="bg-[#1a2332] px-3 py-3 flex items-end gap-2 border-t border-gray-700/50">
+          <div className="flex items-end gap-2 border-t border-border bg-background px-3 py-3">
             <textarea
               ref={inputRef}
               value={message}
@@ -112,7 +112,7 @@ const WhatsAppWidget: React.FC = () => {
               onKeyDown={handleKeyDown}
               placeholder="Type a message..."
               rows={1}
-              className="flex-1 bg-gray-800 text-white text-sm rounded-xl px-4 py-2.5 resize-none placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-green-500/50 max-h-24"
+              className="max-h-24 flex-1 resize-none rounded-xl bg-surface px-4 py-2.5 text-base text-foreground placeholder-subtle focus:outline-none focus:ring-1 focus:ring-green-500/50 sm:text-sm"
             />
             <button
               onClick={handleSend}
@@ -128,7 +128,7 @@ const WhatsAppWidget: React.FC = () => {
       {/* Floating WhatsApp Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#1fb855] rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-110"
+        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-green-500/30 transition-all duration-300 hover:bg-[#1fb855] hover:shadow-green-500/50 sm:right-6 sm:hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
         {isOpen ? (

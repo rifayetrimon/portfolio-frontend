@@ -1,26 +1,376 @@
 @import "tailwindcss";
 
+/* Theme is driven by a `.dark` class on <html> so the toggle can override the
+   OS preference. The inline script in layout.tsx sets it before first paint. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==================== DESIGN TOKENS ==================== */
+
 :root {
+  /* Surfaces */
   --background: #ffffff;
-  --foreground: #171717;
+  --background-alt: #f8fafc;
+  --card: #f8fafc;
+  --surface: #eef2f7;
+  --border: #e2e8f0;
+
+  /* Text */
+  --foreground: #0f172a;
+  --muted: #475569;
+  --subtle: #55606f;
+
+  /* Brand — indigo */
+  --brand: #4f46e5;
+  --brand-strong: #4338ca;
+  /* Accent used as TEXT on the page background. Split from --brand because that
+     one is also a button fill: darkening it helps white-on-fill and hurts
+     text-on-page, so one value can't serve both. */
+  --accent: #4f46e5;
+  --brand-ink: #4338ca;
+  --brand-tint: rgb(79 70 229 / 0.08);
+  --brand-edge: rgb(79 70 229 / 0.22);
+  --brand-glow: rgb(79 70 229 / 0.18);
+
+  /* Accent — violet */
+  --violet-ink: #6d28d9;
+  --violet-tint: rgb(124 58 237 / 0.08);
+  --violet-edge: rgb(124 58 237 / 0.22);
+
+  /* Accent — rose/pink */
+  --rose-ink: #be185d;
+  --rose-tint: rgb(219 39 119 / 0.08);
+  --rose-edge: rgb(219 39 119 / 0.22);
+
+  /* Accent — cyan */
+  --cyan-ink: #0e7490;
+  --cyan-tint: rgb(8 145 178 / 0.08);
+  --cyan-edge: rgb(8 145 178 / 0.22);
+
+  /* Status */
+  --success-ink: #047857;
+  --success-tint: rgb(5 150 105 / 0.1);
+  --success-edge: rgb(5 150 105 / 0.25);
+  --danger-ink: #b91c1c;
+  --danger-tint: rgb(220 38 38 / 0.08);
+  --danger-edge: rgb(220 38 38 / 0.25);
+
+  /* Chrome */
+  --header: rgb(255 255 255 / 0.85);
+  --shadow-color: rgb(15 23 42 / 0.08);
+
+  color-scheme: light;
 }
+
+.dark {
+  --background: #0a0a0a;
+  --background-alt: #0f1117;
+  --card: rgb(17 24 39 / 0.45);
+  --surface: #1f2937;
+  --border: rgb(55 65 81 / 0.55);
+
+  --foreground: #f8fafc;
+  --muted: #9ca3af;
+  --subtle: #8a92a0;
+
+  --brand: #5457ea;
+  --brand-strong: #4338ca;
+  --accent: #818cf8;
+  --brand-ink: #a5b4fc;
+  --brand-tint: rgb(99 102 241 / 0.18);
+  --brand-edge: rgb(99 102 241 / 0.32);
+  --brand-glow: rgb(99 102 241 / 0.35);
+
+  --violet-ink: #c4b5fd;
+  --violet-tint: rgb(139 92 246 / 0.18);
+  --violet-edge: rgb(139 92 246 / 0.32);
+
+  --rose-ink: #f9a8d4;
+  --rose-tint: rgb(236 72 153 / 0.18);
+  --rose-edge: rgb(236 72 153 / 0.32);
+
+  --cyan-ink: #67e8f9;
+  --cyan-tint: rgb(34 211 238 / 0.18);
+  --cyan-edge: rgb(34 211 238 / 0.32);
+
+  --success-ink: #6ee7b7;
+  --success-tint: rgb(16 185 129 / 0.15);
+  --success-edge: rgb(16 185 129 / 0.3);
+  --danger-ink: #fca5a5;
+  --danger-tint: rgb(239 68 68 / 0.12);
+  --danger-edge: rgb(239 68 68 / 0.3);
+
+  --header: rgb(10 10 10 / 0.85);
+  --shadow-color: rgb(0 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+/* ==================== TAILWIND THEME MAPPING ==================== */
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-accent: var(--accent);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-edge: var(--brand-edge);
+
+  --color-violet-ink: var(--violet-ink);
+  --color-violet-tint: var(--violet-tint);
+  --color-violet-edge: var(--violet-edge);
+
+  --color-rose-ink: var(--rose-ink);
+  --color-rose-tint: var(--rose-tint);
+  --color-rose-edge: var(--rose-edge);
+
+  --color-cyan-ink: var(--cyan-ink);
+  --color-cyan-tint: var(--cyan-tint);
+  --color-cyan-edge: var(--cyan-edge);
+
+  --color-success-ink: var(--success-ink);
+  --color-success-tint: var(--success-tint);
+  --color-success-edge: var(--success-edge);
+  --color-danger-ink: var(--danger-ink);
+  --color-danger-tint: var(--danger-tint);
+  --color-danger-edge: var(--danger-edge);
+
+  --color-header: var(--header);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ==================== BASE ==================== */
+
+html {
+  scroll-behavior: smooth;
+  /* The fixed header is 4rem tall; keep anchor targets clear of it. */
+  scroll-padding-top: 4rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Decorative blurs and glows sit outside their containers; without this they
+     create a horizontal scrollbar on narrow screens. */
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Never let a wide child force the page sideways on a phone. */
+#__next,
+main {
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+/* Focus rings that stay visible in both themes. Kept in the base layer so a
+   component's own focus styling (e.g. `focus:outline-none` + a ring) still wins. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+/* Inputs inherit the themed palette rather than the UA default. */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* ==================== SCROLL REVEAL ==================== */
+
+/* Everything here is gated on `.has-js` (set by the pre-paint script) so content
+   is never stranded at opacity 0 when scripts fail to run.
+
+   `[data-reveal]` animates itself; `[data-stagger]` animates its direct children
+   in sequence. Both flip to the resting state via `data-revealed="true"`. */
+
+.has-js [data-reveal],
+.has-js [data-stagger] > * {
+  opacity: 0;
+  transition-property: opacity, transform, filter;
+  transition-duration: var(--reveal-duration, 850ms);
+  transition-timing-function: var(--reveal-ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* --- entrance variants --- */
+
+.has-js [data-reveal="up"],
+.has-js [data-stagger="up"] > * {
+  transform: translate3d(0, 2rem, 0);
+}
+
+.has-js [data-reveal="down"],
+.has-js [data-stagger="down"] > * {
+  transform: translate3d(0, -1.5rem, 0);
+}
+
+.has-js [data-reveal="left"],
+.has-js [data-stagger="left"] > * {
+  transform: translate3d(-2.75rem, 0, 0);
+}
+
+.has-js [data-reveal="right"],
+.has-js [data-stagger="right"] > * {
+  transform: translate3d(2.75rem, 0, 0);
+}
+
+.has-js [data-reveal="scale"],
+.has-js [data-stagger="scale"] > * {
+  transform: scale(0.93);
+}
+
+/* Springy overshoot — the one variant that deliberately passes its resting
+   position before settling. */
+.has-js [data-reveal="pop"],
+.has-js [data-stagger="pop"] > * {
+  transform: scale(0.9) translate3d(0, 1.5rem, 0);
+  --reveal-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.has-js [data-reveal="blur"],
+.has-js [data-stagger="blur"] > * {
+  filter: blur(12px);
+  transform: translate3d(0, 1.25rem, 0);
+}
+
+/* A divider that draws itself out. Scales rather than animating width so it
+   stays on the compositor. */
+.has-js [data-reveal="rule"] {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+@media (min-width: 640px) {
+  .has-js [data-reveal="rule"] {
+    transform-origin: left center;
+  }
+}
+
+/* --- resting state --- */
+
+.has-js [data-reveal][data-revealed="true"],
+.has-js [data-stagger][data-revealed="true"] > * {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+/* --- per-child sequencing ---
+   Driven by :nth-child so children need no wrapper element and no style prop;
+   they sit directly inside CSS grids. Beyond the 16th child everything shares
+   the last offset rather than trailing off indefinitely. */
+
+.has-js [data-stagger] > *:nth-child(1) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 0);
+}
+.has-js [data-stagger] > *:nth-child(2) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 1);
+}
+.has-js [data-stagger] > *:nth-child(3) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 2);
+}
+.has-js [data-stagger] > *:nth-child(4) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 3);
+}
+.has-js [data-stagger] > *:nth-child(5) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 4);
+}
+.has-js [data-stagger] > *:nth-child(6) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 5);
+}
+.has-js [data-stagger] > *:nth-child(7) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 6);
+}
+.has-js [data-stagger] > *:nth-child(8) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 7);
+}
+.has-js [data-stagger] > *:nth-child(9) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 8);
+}
+.has-js [data-stagger] > *:nth-child(10) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 9);
+}
+.has-js [data-stagger] > *:nth-child(11) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 10);
+}
+.has-js [data-stagger] > *:nth-child(12) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 11);
+}
+.has-js [data-stagger] > *:nth-child(13) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 12);
+}
+.has-js [data-stagger] > *:nth-child(14) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 13);
+}
+.has-js [data-stagger] > *:nth-child(15) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 14);
+}
+.has-js [data-stagger] > *:nth-child(16) {
+  --reveal-delay: calc(var(--stagger-base, 0ms) + var(--stagger-step, 90ms) * 15);
+}
+
+/* The hero's scroll cue. */
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(0.4rem);
+    opacity: 1;
+  }
+}
+
+.animate-scroll-cue {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Reveal targets must not depend on a transition that no longer runs. */
+  .has-js [data-reveal],
+  .has-js [data-stagger] > * {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }

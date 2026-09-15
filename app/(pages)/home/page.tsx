@@ -10,54 +10,45 @@ import Contact from "@/components/home/Contact";
 import WhatsAppWidget from "@/components/home/WhatsAppWidget";
 import AICallWidget from "@/components/home/AICallWidget";
 
+// On phones the sections size to their content — forcing a viewport height there
+// only padded short sections with dead space. From `sm` up they fill the screen
+// again, measured in `svh` so the layout doesn't jump as mobile browser chrome
+// collapses on scroll (plain `vh` did).
+const SECTION =
+  "flex items-center justify-center sm:min-h-[calc(100svh-4rem)]";
+
+// The floating chat/call buttons overlap the bottom of the last section.
+const LAST_SECTION = `${SECTION} pb-28 sm:pb-20`;
+
 export default function HomePage() {
   return (
     <>
       <Navbar />
 
       <main>
-        <section
-          id="home"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="home" className={SECTION}>
           <Banner />
         </section>
 
-        <section
-          id="about"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="about" className={SECTION}>
           <About />
         </section>
 
-        <section
-          id="projects"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="projects" className={SECTION}>
           <Projects />
         </section>
 
-        <section
-          id="skills"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="skills" className={SECTION}>
           <Skills />
         </section>
 
-        <section
-          id="experience"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="experience" className={SECTION}>
           <Experience />
         </section>
 
-        <section
-          id="contact"
-          className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center sm:min-h-[calc(100vh-4rem)]"
-        >
+        <section id="contact" className={LAST_SECTION}>
           <Contact />
         </section>
-
       </main>
 
       <WhatsAppWidget />

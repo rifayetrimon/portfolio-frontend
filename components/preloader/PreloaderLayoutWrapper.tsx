@@ -11,10 +11,10 @@ interface PreloaderWrapperProps {
  * Renders a simple, centered loading screen with a spinner.
  */
 const LoadingScreen: React.FC = () => (
-  <div className="fixed inset-0 flex flex-col items-center justify-center bg-white z-[999] transition-opacity duration-300">
+  <div className="fixed inset-0 flex flex-col items-center justify-center bg-background z-[999] transition-opacity duration-300">
     <div className="flex flex-col items-center space-y-4">
-      <Loader size={48} className="animate-spin text-indigo-600" />
-      <p className="text-xl font-medium text-gray-700 tracking-wider">
+      <Loader size={48} className="animate-spin text-brand" />
+      <p className="text-xl font-medium text-muted tracking-wider">
         Initializing Portfolio
       </p>
     </div>

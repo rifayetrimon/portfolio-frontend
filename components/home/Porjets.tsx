@@ -9,6 +9,7 @@ import {
   Brain,
   Globe,
 } from "lucide-react";
+import { Stagger } from "@/components/ui/Reveal";
 
 // Helper function to get category icon
 const getCategoryIcon = (category: string) => {
@@ -26,11 +27,11 @@ const getCategoryIcon = (category: string) => {
 const getCategoryColor = (category: string) => {
   switch (category) {
     case "Full-Stack":
-      return "bg-indigo-500/20 text-indigo-300 border-indigo-500/30";
+      return "bg-brand-tint text-brand-ink border-brand-edge";
     case "Machine Learning":
-      return "bg-purple-500/20 text-purple-300 border-purple-500/30";
+      return "bg-violet-tint text-violet-ink border-violet-edge";
     default:
-      return "bg-pink-500/20 text-pink-300 border-pink-500/30";
+      return "bg-rose-tint text-rose-ink border-rose-edge";
   }
 };
 
@@ -151,41 +152,45 @@ export default function Projects() {
             */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Section Header */}
-        <div className="mb-10 sm:mb-16 text-center sm:text-left">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-            My <span className="text-indigo-500">Projects</span>
+        <Stagger variant="up" className="mb-10 sm:mb-16 text-center sm:text-left">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            My <span className="text-accent">Projects</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6 mx-auto sm:mx-0"></div>
-          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto sm:mx-0">
+          <p className="text-base sm:text-lg text-muted max-w-2xl mx-auto sm:mx-0">
             A collection of full-stack applications and machine learning models
             showcasing my expertise in building scalable solutions and
             intelligent systems.
           </p>
-        </div>
+        </Stagger>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-12 justify-center sm:justify-start">
+        <Stagger variant="pop" step={70} className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-12 justify-center sm:justify-start">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/50"
-                  : "border border-gray-700 text-gray-300 hover:border-indigo-500 hover:text-indigo-300"
+                  ? "bg-brand text-white shadow-lg shadow-[0_0_25px_var(--brand-glow)]"
+                  : "border border-border text-muted hover:border-brand hover:text-brand-ink"
               }`}
             >
               {category}
             </button>
           ))}
-        </div>
+        </Stagger>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <Stagger
+          variant="pop"
+          step={90}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group relative h-full flex flex-col rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 overflow-hidden"
+              className="group relative h-full flex flex-col rounded-2xl border border-border bg-card hover:border-brand transition-all duration-300 overflow-hidden"
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow =
                   "0 0 30px rgba(99, 102, 241, 0.2), inset 0 0 30px rgba(99, 102, 241, 0.05)";
@@ -207,12 +212,12 @@ export default function Projects() {
                 </div>
 
                 {/* Project Title */}
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
 
                 {/* Project Description */}
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4">
                   {project.description}
                 </p>
 
@@ -221,7 +226,7 @@ export default function Projects() {
                   {project.highlights.map((highlight, idx) => (
                     <span
                       key={idx}
-                      className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
+                      className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-brand-tint text-brand-ink border border-brand-edge"
                     >
                       {highlight}
                     </span>
@@ -231,11 +236,11 @@ export default function Projects() {
 
               {/* Technologies */}
               <div className="px-5 sm:px-6 pb-4 mt-auto">
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-gray-700/50">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-border">
                   {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-gray-800 text-gray-300 border border-gray-700"
+                      className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full bg-surface text-muted border border-border"
                     >
                       {tech}
                     </span>
@@ -244,13 +249,13 @@ export default function Projects() {
               </div>
 
               {/* Links */}
-              <div className="px-5 sm:px-6 py-4 border-t border-gray-700/50 flex gap-2 sm:gap-3">
+              <div className="px-5 sm:px-6 py-4 border-t border-border flex gap-2 sm:gap-3">
                 {project.links.github && (
                   <a
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-indigo-600 hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
+                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-surface text-muted hover:bg-brand hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
                   >
                     <Github size={14} className="sm:w-4 sm:h-4" />
                     GitHub
@@ -261,7 +266,7 @@ export default function Projects() {
                     href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold text-xs sm:text-sm"
+                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-brand text-white hover:bg-brand-strong transition-all duration-300 font-semibold text-xs sm:text-sm"
                   >
                     <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                     Live
@@ -272,7 +277,7 @@ export default function Projects() {
                     href={project.links.kaggle}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-purple-600 hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
+                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-surface text-muted hover:bg-purple-600 hover:text-white transition-all duration-300 font-semibold text-xs sm:text-sm"
                   >
                     <Database size={14} className="sm:w-4 sm:h-4" />
                     Kaggle
@@ -283,7 +288,7 @@ export default function Projects() {
                     href={project.links.gradio}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold text-xs sm:text-sm"
+                    className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg bg-brand text-white hover:bg-brand-strong transition-all duration-300 font-semibold text-xs sm:text-sm"
                   >
                     <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                     Demo
@@ -292,7 +297,7 @@ export default function Projects() {
               </div>
             </div>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

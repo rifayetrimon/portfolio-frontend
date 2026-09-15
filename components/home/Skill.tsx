@@ -9,6 +9,7 @@ import {
     Zap,
     Layers,
 } from "lucide-react";
+import Reveal, { Stagger } from "@/components/ui/Reveal";
 
 // ==================== TYPE DEFINITIONS ====================
 
@@ -20,7 +21,6 @@ interface Skill {
 interface ColorScheme {
     bg: string;
     border: string;
-    icon: string;
     accent: string;
 }
 
@@ -62,27 +62,23 @@ interface SkillCategoryProps {
 
 const COLOR_SCHEMES: Record<ColorKey, ColorScheme> = {
     indigo: {
-        bg: "bg-indigo-500/10",
-        border: "border-indigo-500/30",
-        icon: "text-indigo-400",
+        bg: "bg-brand-tint",
+        border: "border-brand-edge",
         accent: "from-indigo-500 to-indigo-600",
     },
     purple: {
-        bg: "bg-purple-500/10",
-        border: "border-purple-500/30",
-        icon: "text-purple-400",
+        bg: "bg-violet-tint",
+        border: "border-violet-edge",
         accent: "from-purple-500 to-purple-600",
     },
     pink: {
-        bg: "bg-pink-500/10",
-        border: "border-pink-500/30",
-        icon: "text-pink-400",
+        bg: "bg-rose-tint",
+        border: "border-rose-edge",
         accent: "from-pink-500 to-pink-600",
     },
     cyan: {
-        bg: "bg-cyan-500/10",
-        border: "border-cyan-500/30",
-        icon: "text-cyan-400",
+        bg: "bg-cyan-tint",
+        border: "border-cyan-edge",
         accent: "from-cyan-500 to-cyan-600",
     },
 };
@@ -189,10 +185,10 @@ const SkillBar: React.FC<SkillBarProps> = ({ name, level }) => {
     return (
         <div className="space-y-1.5 sm:space-y-2">
             <div className="flex items-center justify-between">
-                <span className="text-xs sm:text-sm font-medium text-gray-300">{name}</span>
-                <span className="text-[10px] sm:text-xs text-gray-500">{level}%</span>
+                <span className="text-xs sm:text-sm font-medium text-muted">{name}</span>
+                <span className="text-[10px] sm:text-xs text-subtle">{level}%</span>
             </div>
-            <div className="w-full h-1.5 sm:h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 sm:h-2 bg-surface rounded-full overflow-hidden">
                 <div
                     className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
                     style={{ width: `${level}%` }}
@@ -221,10 +217,10 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
             }}
         >
             <div className="flex items-center gap-3 mb-5 sm:mb-6">
-                <div className={`p-2 sm:p-3 rounded-lg bg-gradient-to-br ${colors.accent} bg-opacity-20`}>
-                    <Icon size={20} className={`${colors.icon} sm:w-6 sm:h-6`} />
+                <div className={`p-2 sm:p-3 rounded-lg bg-gradient-to-br ${colors.accent}`}>
+                    <Icon size={20} className="text-white sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                     {category}
                 </h3>
             </div>
@@ -243,14 +239,14 @@ const SkillStatCard: React.FC<{ stat: SkillStat }> = ({ stat }) => {
     const gradientColor = COLOR_MAP[stat.color];
 
     return (
-        <div className="p-4 sm:p-6 rounded-2xl border border-gray-700/50 bg-gray-900/30 hover:border-indigo-500/50 transition-all duration-300 text-center group">
+        <div className="p-4 sm:p-6 rounded-2xl border border-border bg-card hover:border-brand transition-all duration-300 text-center group">
             <div
                 className={`inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br ${gradientColor} mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}
             >
                 <Icon size={20} className="text-white sm:w-6 sm:h-6" />
             </div>
-            <p className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.value}</p>
-            <p className="text-gray-400 text-xs sm:text-sm">{stat.label}</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1 sm:mb-2">{stat.value}</p>
+            <p className="text-muted text-xs sm:text-sm">{stat.label}</p>
         </div>
     );
 };
@@ -260,8 +256,8 @@ const ProficiencyLevelItem: React.FC<{ level: ProficiencyLevel }> = ({ level }) 
         <div className="flex items-center gap-3">
             <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-r ${level.color} flex-shrink-0`}></div>
             <div>
-                <p className="text-xs sm:text-sm font-semibold text-white">{level.label}</p>
-                <p className="text-[10px] sm:text-xs text-gray-400">{level.range}</p>
+                <p className="text-xs sm:text-sm font-semibold text-foreground">{level.label}</p>
+                <p className="text-[10px] sm:text-xs text-muted">{level.range}</p>
             </div>
         </div>
     );
@@ -279,18 +275,18 @@ const Skills: React.FC = () => {
             */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 {/* Section Header */}
-                <div className="mb-10 sm:mb-16 text-center sm:text-left">
-                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-                        My <span className="text-indigo-500">Skills</span>
+                <Stagger variant="up" className="mb-10 sm:mb-16 text-center sm:text-left">
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+                        My <span className="text-accent">Skills</span>
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6 mx-auto sm:mx-0"></div>
-                    <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto sm:mx-0">
+                    <p className="text-base sm:text-lg text-muted max-w-2xl mx-auto sm:mx-0">
                         A comprehensive overview of my technical expertise across frontend, backend, machine learning, and development tools. Each skill is rated based on my proficiency and hands-on experience.
                     </p>
-                </div>
+                </Stagger>
 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
+                <Stagger variant="up" step={100} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
                     {SKILLS_DATA.map((skillCategory, idx) => (
                         <SkillCategory
                             key={idx}
@@ -300,31 +296,31 @@ const Skills: React.FC = () => {
                             skills={skillCategory.skills}
                         />
                     ))}
-                </div>
+                </Stagger>
 
                 {/* Skills Summary Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
+                <Stagger variant="pop" step={90} className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
                     {SKILLS_STATS.map((stat, idx) => (
                         <SkillStatCard key={idx} stat={stat} />
                     ))}
-                </div>
+                </Stagger>
 
                 {/* Proficiency Legend */}
-                <div className="p-6 sm:p-8 rounded-2xl border border-gray-700/50 bg-gray-900/30">
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-6 text-center sm:text-left">Proficiency Scale</h3>
+                <Reveal variant="scale"><div className="p-6 sm:p-8 rounded-2xl border border-border bg-card">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-6 text-center sm:text-left">Proficiency Scale</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {PROFICIENCY_LEVELS.map((level, idx) => (
                             <ProficiencyLevelItem key={idx} level={level} />
                         ))}
                     </div>
-                </div>
+                </div></Reveal>
 
                 {/* Call to Action */}
-                <div className="mt-12 sm:mt-16 text-center">
-                    <p className="text-sm sm:text-base text-gray-400 mb-6">Want to see these skills in action?</p>
+                <Reveal className="mt-12 sm:mt-16 text-center">
+                    <p className="text-sm sm:text-base text-muted mb-6">Want to see these skills in action?</p>
                     <a
                         href="#projects"
-                        className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-indigo-500/50 text-sm sm:text-base"
+                        className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-brand text-white hover:bg-brand-strong transition-all duration-300 font-semibold shadow-lg hover:shadow-[0_0_25px_var(--brand-glow)] text-sm sm:text-base"
                     >
                         Explore My Projects
                         <svg
@@ -341,7 +337,7 @@ const Skills: React.FC = () => {
                             />
                         </svg>
                     </a>
-                </div>
+                </Reveal>
             </div>
         </section>
     );

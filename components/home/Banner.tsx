@@ -1,14 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { Download, ArrowRight } from "lucide-react";
+import { Download, ArrowRight, ChevronDown } from "lucide-react";
+import { RESUME } from "@/lib/site";
+import Reveal, { Stagger } from "@/components/ui/Reveal";
 
 export default function Banner() {
-  const handleScrollToProjects = () => {
-    const element = document.getElementById("projects");
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 64; // 4rem = 64px
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - navbarHeight,
         behavior: "smooth",
@@ -17,110 +20,109 @@ export default function Banner() {
   };
 
   return (
-    <section className="w-full flex items-center pt-24 pb-12 sm:pt-28 sm:pb-20 lg:py-20">
-      {/* 
-          Standardized container 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' 
-          to match the Navbar exactly. 
+    <section className="flex w-full items-center pb-28 pt-20 sm:pb-20 sm:pt-28 lg:py-20">
+      {/*
+          Standardized container 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+          to match the Navbar exactly.
           pt-24 on mobile ensures the content starts below the fixed Navbar.
       */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Mobile: Stack items (flex-col-reverse), Desktop: Grid */}
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-
+        <div className="flex flex-col-reverse items-center gap-8 lg:grid lg:grid-cols-2 lg:gap-12">
           {/* LEFT COLUMN - Text Content */}
-          <div className="space-y-6 text-center lg:text-left">
+          <Stagger variant="up" step={110} className="space-y-5 text-center sm:space-y-6 lg:text-left">
             {/* Greeting */}
             <div className="space-y-2">
-              <p className="text-base sm:text-lg text-indigo-600 font-medium">
+              <p className="text-base font-medium text-accent sm:text-lg">
                 Hi there! 👋
               </p>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                This is <span className="text-indigo-500">Rifayet</span>
+              <h1 className="text-3xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+                This is <span className="text-accent">Rifayet</span>
               </h1>
-              <h2 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-300">
+              <h2 className="text-xl font-semibold text-muted sm:text-3xl lg:text-4xl">
                 Software Developer
               </h2>
             </div>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto lg:mx-0">
+            <p className="mx-auto max-w-xl text-base text-muted sm:text-lg lg:mx-0">
               Passionate about creating elegant solutions and building amazing
               web experiences. Specializing in modern web technologies and
               user-centric design.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+            <div className="flex flex-col justify-center gap-3 pt-4 sm:flex-row sm:gap-4 lg:justify-start">
               <button
-                onClick={handleScrollToProjects}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/50"
+                onClick={() => handleScrollTo("projects")}
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-brand-strong hover:shadow-[0_0_25px_var(--brand-glow)] sm:hover:scale-105"
               >
                 View Projects
                 <ArrowRight
                   size={20}
-                  className="group-hover:translate-x-1 transition-transform"
+                  className="transition-transform group-hover:translate-x-1"
                 />
               </button>
 
-              <button
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-full border-2 border-gray-700 text-white hover:border-indigo-500 hover:bg-indigo-500/10 transition-all duration-300"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "0 0 20px rgba(99, 102, 241, 0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                }}
+              <a
+                href={RESUME.href}
+                download={RESUME.downloadName}
+                className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-border px-6 py-3 text-base font-semibold text-foreground transition-all duration-300 hover:border-brand hover:bg-brand-tint hover:shadow-[0_0_20px_var(--brand-glow)]"
               >
                 <Download size={20} />
                 Download CV
-              </button>
+              </a>
             </div>
-          </div>
+          </Stagger>
 
           {/* RIGHT COLUMN - Image with Oval Background */}
-          <div className="flex justify-center lg:justify-end w-full mb-8 lg:mb-0">
+          <Reveal variant="blur" delay={120} duration={1100} className="mb-4 flex w-full justify-center sm:mb-8 lg:mb-0 lg:justify-end">
             <div className="relative">
               {/* Glowing Oval Background */}
               <div
-                className="absolute inset-0 rounded-full blur-3xl opacity-30"
+                className="absolute inset-0 rounded-full opacity-40 blur-3xl dark:opacity-30"
                 style={{
                   background:
-                    "radial-gradient(ellipse at center, rgba(99, 102, 241, 0.6) 0%, rgba(139, 92, 246, 0.4) 50%, transparent 70%)",
+                    "radial-gradient(ellipse at center, var(--brand-glow) 0%, var(--violet-edge) 50%, transparent 70%)",
                   transform: "scale(1.1)",
                 }}
               ></div>
 
               {/* Oval Border Container */}
-              <div
-                className="relative w-56 h-72 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] rounded-full overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%)",
-                  border: "2px solid rgba(99, 102, 241, 0.15)",
-                  boxShadow:
-                    "0 0 60px rgba(99, 102, 241, 0.15), inset 0 0 60px rgba(99, 102, 241, 0.05)",
-                }}
-              >
+              <div className="relative h-60 w-48 overflow-hidden rounded-full border-2 border-brand-edge bg-brand-tint shadow-[0_0_60px_var(--brand-glow)] sm:h-[28rem] sm:w-80 lg:h-[32rem] lg:w-96">
                 {/* Profile Image */}
                 <Image
                   src="/banner/banner-img-black.png"
                   alt="Rifayet - Software Developer"
                   fill
+                  // Without sizes, Next ships the full-width source to phones.
+                  sizes="(max-width: 640px) 12rem, (max-width: 1024px) 20rem, 24rem"
                   className="object-cover"
                   priority
                 />
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-indigo-500/20 blur-2xl animate-pulse"></div>
+              <div className="absolute -right-4 -top-4 h-16 w-16 animate-pulse rounded-full bg-brand-tint blur-2xl sm:h-24 sm:w-24"></div>
               <div
-                className="absolute -bottom-4 -left-4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-purple-500/20 blur-2xl animate-pulse"
+                className="absolute -bottom-4 -left-4 h-20 w-20 animate-pulse rounded-full bg-violet-tint blur-2xl sm:h-32 sm:w-32"
                 style={{ animationDelay: "1s" }}
               ></div>
             </div>
-          </div>
+          </Reveal>
         </div>
+
+        {/* Scroll cue — hidden once there's no room for it on short screens. */}
+        <Reveal delay={600} className="mt-10 hidden justify-center lg:flex">
+          <button
+            onClick={() => handleScrollTo("about")}
+            className="group flex flex-col items-center gap-1 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-widest text-muted transition-colors hover:text-accent"
+            aria-label="Scroll to the About section"
+          >
+            Scroll
+            <ChevronDown size={18} className="animate-scroll-cue" />
+          </button>
+        </Reveal>
       </div>
     </section>
   );

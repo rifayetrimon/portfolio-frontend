@@ -132,9 +132,9 @@ const AICallWidget: React.FC = () => {
   const isConnecting = state === "connecting";
 
   return (
-    <div className="fixed bottom-6 left-4 sm:left-6 z-50 flex flex-col items-start gap-2">
+    <div className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-4 z-50 flex flex-col items-start gap-2 sm:left-6">
       {status && (
-        <div className="max-w-[260px] rounded-lg bg-black/80 px-3 py-2 text-xs text-white shadow-lg backdrop-blur-sm">
+        <div className="max-w-[min(16rem,calc(100vw-6.5rem))] rounded-lg border border-border bg-foreground px-3 py-2 text-xs text-background shadow-lg backdrop-blur-sm">
           {status}
         </div>
       )}
@@ -142,10 +142,10 @@ const AICallWidget: React.FC = () => {
       <button
         onClick={handleClick}
         disabled={isConnecting}
-        className={`flex items-center gap-2.5 rounded-full px-5 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-80 ${
+        className={`flex items-center gap-2.5 rounded-full px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-80 sm:px-5 sm:hover:scale-105 ${
           isLive
             ? "bg-[#c2272d] shadow-red-500/30 hover:shadow-red-500/50"
-            : "bg-neutral-900 shadow-black/30 hover:bg-neutral-800"
+            : "bg-brand shadow-[0_0_20px_var(--brand-glow)] hover:bg-brand-strong"
         }`}
         aria-label={isLive ? "End AI voice call" : "Talk to my AI assistant"}
       >
@@ -161,7 +161,7 @@ const AICallWidget: React.FC = () => {
             <Phone size={18} className="-m-[3.75px]" />
           )}
         </span>
-        <span className="text-sm">
+        <span className="hidden text-sm min-[380px]:inline">
           {isConnecting ? "Connecting…" : isLive ? "End call" : "Talk to my AI"}
         </span>
       </button>

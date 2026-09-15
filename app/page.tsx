@@ -9,10 +9,10 @@ import { Loader } from "lucide-react";
  */
 const LoadingScreen: React.FC = () => (
   // Fixed inset for full screen coverage, high z-index, and clean background
-  <div className="fixed inset-0 flex flex-col items-center justify-center min-h-screen bg-white text-gray-900 z-[999] transition-opacity duration-300">
+  <div className="fixed inset-0 flex flex-col items-center justify-center min-h-screen bg-background text-foreground z-[999] transition-opacity duration-300">
     <div className="flex flex-col items-center space-y-4">
-      <Loader size={48} className="animate-spin text-indigo-600" />
-      <p className="text-xl font-medium text-gray-700 tracking-wider">
+      <Loader size={48} className="animate-spin text-brand" />
+      <p className="text-xl font-medium text-muted tracking-wider">
         Initializing Portfolio
       </p>
     </div>
